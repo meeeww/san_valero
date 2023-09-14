@@ -6,6 +6,20 @@ function addElement() {
     fetch("Lista.json")
         .then((response) => response.json())
         .then((json) => {
+            let paginas = Math.round(json.length / 6)
+            const paginacionPrincipal = document.querySelector(".paginacionPrincipal")
+
+            for (let i = 0; i < paginas; i++) {
+                console.log(i)
+                if ((i + 1) == 1) {
+                    paginacionPrincipal.insertAdjacentHTML("beforeend", `<span class="paginacionTextoPrincipal paginacionTextoPrincipalActiva">${i + 1}</span>`)
+                } else {
+                    paginacionPrincipal.insertAdjacentHTML("beforeend", `<span class="paginacionTextoPrincipal">${i + 1}</span>`)
+                }
+            }
+            paginacionPrincipal.insertAdjacentHTML("beforeend", `<i class="fa-solid fa-arrow-right"></i>`)
+            
+
             json.forEach((elemento) => {
                 let html = `<div class="productoIndividual">
                 <div class="imagenProductoIndividual">
@@ -24,7 +38,7 @@ function addElement() {
 }
 
 
-var botonesProductos = document.querySelectorAll(".corazonProductoIndividual")
+const botonesProductos = document.querySelectorAll(".corazonProductoIndividual")
 
 botonesProductos.forEach((boton) => {
     boton.addEventListener("click", function () {
@@ -37,3 +51,9 @@ botonesProductos.forEach((boton) => {
         }
     })
 });
+
+const paginasPaginacion = document.querySelectorAll(".paginacionTextoPrincipal")
+
+paginasPaginacion.forEach((pagina) => {//falta la logica
+
+})
